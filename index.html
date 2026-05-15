@@ -1,0 +1,933 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>tutor / sonny. an AI picking robot, made for DTC.</title>
+<meta name="description" content="sonny is an AI picking robot, built by tutor intelligence in watertown, MA, for variant-rich DTC warehouses." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+
+<template id="__bundler_thumbnail" data-bg-color="#F4EFE2">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#F4EFE2"/>
+    <circle cx="600" cy="380" r="180" fill="#FFD24C"/>
+    <rect x="588" y="370" width="120" height="22" fill="#1A1A1A"/>
+    <text x="600" y="640" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="86" fill="#1A1A1A" letter-spacing="-3">sonny.</text>
+  </svg>
+</template>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<!-- ================ top nav ================ -->
+<nav class="topnav" id="topnav">
+  <div class="topnav-brand">
+    <span class="mark"></span>
+    <span>tutor</span><span class="slash">/</span><span>sonny</span>
+  </div>
+  <div class="topnav-meta">
+    <a href="#anatomy">the robot</a>
+    <a href="#flex">your floor</a>
+    <a href="#model">the model</a>
+  </div>
+  <a href="#cta" class="topnav-cta">book a floor walk</a>
+</nav>
+
+<!-- ================ chapter rail ================ -->
+<aside class="rail" id="rail">
+  <a href="#hero"     data-target="hero"><span class="label">hero</span><span class="dot"></span></a>
+  <a href="#anatomy"  data-target="anatomy"><span class="label">the robot</span><span class="dot"></span></a>
+  <a href="#tutor"    data-target="tutor"><span class="label">who built him</span><span class="dot"></span></a>
+  <a href="#fleet"    data-target="fleet"><span class="label">a hundred built</span><span class="dot"></span></a>
+  <a href="#profile"  data-target="profile"><span class="label">what he's built for</span><span class="dot"></span></a>
+  <a href="#flex"     data-target="flex"><span class="label">your floor, unchanged</span><span class="dot"></span></a>
+  <a href="#gripper"  data-target="gripper"><span class="label">one hand, two modes</span><span class="dot"></span></a>
+  <a href="#cascade"  data-target="cascade"><span class="label">cost of a wrong pick</span><span class="dot"></span></a>
+  <a href="#model"    data-target="model"><span class="label">the model</span><span class="dot"></span></a>
+  <a href="#cta"      data-target="cta"><span class="label">the close</span><span class="dot"></span></a>
+</aside>
+
+<!-- ================ HERO ================ -->
+<section id="hero" class="hero" data-screen-label="01 Hero" data-rail-light="0">
+  <div class="hero-l">
+    <div class="hero-eyebrow eyebrow">tutor intelligence · sonny v1 · 2026</div>
+    <h1 class="hero-h">
+      <span class="h-word h-w1" data-word="an">an</span>
+      <span class="h-word h-w2" data-word="AI">AI</span>
+      <span class="h-word h-w3" data-word="picking">picking</span>
+      <span class="h-word h-w4" data-word="robot,">robot,</span><br/>
+      <em>
+        <span class="h-word h-w5" data-word="made for">made for </span>
+        <span class="h-word h-w6" data-word="DTC."><span class="yellow-mark">DTC.</span></span>
+      </em>
+    </h1>
+    <p class="hero-sub">
+      sonny rolls through the warehouse you already have, fills a cart of multi-order totes, and pulls back to your pack stations. one tote per order. many orders per trip. vision-verified before he ever lets go.
+    </p>
+    <div class="hero-actions">
+      <a href="#cta" class="btn-primary">book a floor walk <span class="arrow">→</span></a>
+      <a href="#anatomy" class="btn-ghost">meet sonny</a>
+    </div>
+  </div>
+
+  <div class="hero-r">
+    <div class="hero-stage" id="heroStage">
+      <img src="assets/sonny.png" alt="sonny, autonomous picking robot" class="hero-sonny" id="heroSonny" />
+    </div>
+  </div>
+
+  <div class="hero-spec">
+    <div class="hero-spec-col"><span>watertown · ma</span><b>built in-house</b></div>
+    <div class="hero-spec-col" style="text-align:center"><span>current fleet</span><b>100 sonnys</b></div>
+    <div class="hero-spec-col" style="text-align:center"><span>production stack</span><b>live · multi-site · over a year shipped</b></div>
+    <div class="scroll-cue"><span>scroll</span><span class="line"></span></div>
+  </div>
+</section>
+
+<!-- ================ marquee ================ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span><i class="dot"></i> an AI picking robot, made for DTC</span>
+    <span><i class="dot"></i> mit ai lab origin, est. 2021</span>
+    <span><i class="dot"></i> watertown, ma · 100,000 sqft</span>
+    <span><i class="dot"></i> the team that builds is the team that supports</span>
+    <span><i class="dot"></i> we only earn when sonny works</span>
+    <span><i class="dot"></i> half research lab, half deployment company</span>
+    <span><i class="dot"></i> an AI picking robot, made for DTC</span>
+    <span><i class="dot"></i> mit ai lab origin, est. 2021</span>
+    <span><i class="dot"></i> watertown, ma · 100,000 sqft</span>
+    <span><i class="dot"></i> the team that builds is the team that supports</span>
+    <span><i class="dot"></i> we only earn when sonny works</span>
+    <span><i class="dot"></i> half research lab, half deployment company</span>
+  </div>
+</div>
+
+<!-- ================ ANATOMY (orthographic plate) ================ -->
+<section id="anatomy" class="anatomy" data-screen-label="02 The Robot">
+  <div class="anatomy-head">
+    <div class="eyebrow fade">02 / the robot</div>
+    <h2 class="display fade d1">one base, two arms, <em>one cart of totes.</em></h2>
+    <p class="lede fade d2" style="margin: 0 auto;">
+      sonny rolls onto the floor you already have, fills a cart of totes, and pulls back to your pack stations. one tote per order. vision-verifies every SKU before he ever lets go.
+    </p>
+  </div>
+
+  <figure class="plate-frame fade d2">
+    <div class="plate-edge plate-edge-tl"></div>
+    <div class="plate-edge plate-edge-tr"></div>
+    <div class="plate-edge plate-edge-bl"></div>
+    <div class="plate-edge plate-edge-br"></div>
+
+    <svg class="plate-svg" viewBox="0 0 1400 920" xmlns="http://www.w3.org/2000/svg" aria-label="sonny / orthographic plate / front · iso · plan">
+      <defs>
+        <pattern id="pl-grid" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+          <circle cx="1" cy="1" r="0.7" fill="rgba(26,26,26,0.10)"/>
+        </pattern>
+        <pattern id="pl-gridmaj" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+          <circle cx="1" cy="1" r="1.2" fill="rgba(26,26,26,0.20)"/>
+        </pattern>
+        <symbol id="pl-balloon" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="11" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="1.4"/>
+        </symbol>
+      </defs>
+
+      <!-- ============ FRAME 1 / FRONT ELEVATION ============ -->
+      <g transform="translate(40 80)">
+        <rect width="300" height="620" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="1.2"/>
+        <rect width="300" height="620" fill="url(#pl-grid)"/>
+        <rect width="300" height="620" fill="url(#pl-gridmaj)"/>
+        <line x1="0" y1="600" x2="300" y2="600" stroke="#1A1A1A" stroke-width="1.2"/>
+        <text x="10" y="22" font-family="ui-monospace, Menlo, monospace" font-size="10" letter-spacing="2.4" fill="#1A1A1A">FRONT ELEVATION</text>
+        <text x="290" y="22" font-family="ui-monospace, Menlo, monospace" font-size="10" letter-spacing="2.4" fill="#1A1A1A" opacity="0.5" text-anchor="end">01</text>
+
+        <!-- robot front view, all white body, parked posture -->
+        <g stroke="#1A1A1A" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" fill="#FFFFFF">
+          <!-- mobile base -->
+          <rect x="80" y="500" width="140" height="68" rx="6"/>
+          <rect x="86" y="476" width="128" height="28" rx="3"/>
+          <circle cx="100" cy="582" r="20"/>
+          <circle cx="200" cy="582" r="20"/>
+          <circle cx="100" cy="582" r="6" fill="#1A1A1A"/>
+          <circle cx="200" cy="582" r="6" fill="#1A1A1A"/>
+          <!-- column (bulked to match side-elevation mast) -->
+          <rect x="116" y="270" width="68" height="208" rx="4"/>
+          <line x1="124" y1="304" x2="176" y2="304" opacity="0.25"/>
+          <line x1="124" y1="354" x2="176" y2="354" opacity="0.25"/>
+          <line x1="124" y1="404" x2="176" y2="404" opacity="0.25"/>
+          <line x1="124" y1="454" x2="176" y2="454" opacity="0.25"/>
+          <!-- shoulders -->
+          <rect x="84" y="244" width="132" height="32" rx="6"/>
+          <!-- head -->
+          <rect x="118" y="180" width="64" height="64" rx="8"/>
+          <!-- visor band -->
+          <rect x="124" y="200" width="52" height="22" rx="2" fill="#1A1A1A" stroke="none"/>
+          <circle cx="138" cy="211" r="3.6" fill="#FFD24C" stroke="none"/>
+          <circle cx="162" cy="211" r="3.6" fill="#FFD24C" stroke="none"/>
+          <circle cx="138" cy="211" r="1.2" fill="#1A1A1A" stroke="none"/>
+          <circle cx="162" cy="211" r="1.2" fill="#1A1A1A" stroke="none"/>
+          <!-- antenna LED -->
+          <line x1="150" y1="180" x2="150" y2="166" stroke-width="1.2"/>
+          <circle cx="150" cy="164" r="3" fill="#FFD24C"/>
+          <!-- arms hanging straight, parked -->
+          <line x1="100" y1="276" x2="100" y2="450" stroke-width="3.6"/>
+          <line x1="200" y1="276" x2="200" y2="450" stroke-width="3.6"/>
+          <!-- elbow joints (visible) -->
+          <circle cx="100" cy="362" r="5"/>
+          <circle cx="200" cy="362" r="5"/>
+          <!-- grippers parked at sides -->
+          <rect x="88" y="450" width="24" height="14" rx="2"/>
+          <rect x="188" y="450" width="24" height="14" rx="2"/>
+          <line x1="94" y1="464" x2="94" y2="472" stroke-width="1.6"/>
+          <line x1="106" y1="464" x2="106" y2="472" stroke-width="1.6"/>
+          <line x1="194" y1="464" x2="194" y2="472" stroke-width="1.6"/>
+          <line x1="206" y1="464" x2="206" y2="472" stroke-width="1.6"/>
+        </g>
+        <!-- shadow -->
+        <ellipse cx="150" cy="600" rx="105" ry="2.4" fill="#1A1A1A" opacity="0.18"/>
+
+        <!-- DIMENSION LINES (blueprint blue) -->
+        <g stroke="#1F4ED5" stroke-width="0.8" fill="#1F4ED5" opacity="0.55" font-family="ui-monospace, Menlo, monospace" font-size="9" letter-spacing="0.08em">
+          <!-- overall height: floor → top of head -->
+          <line x1="252" y1="180" x2="262" y2="180" stroke-width="0.6"/>
+          <line x1="252" y1="600" x2="262" y2="600" stroke-width="0.6"/>
+          <line x1="258" y1="180" x2="258" y2="376" stroke-width="0.6"/>
+          <line x1="258" y1="404" x2="258" y2="600" stroke-width="0.6"/>
+          <polygon points="258,184 255,178 261,178" stroke="none"/>
+          <polygon points="258,596 255,602 261,602" stroke="none"/>
+          <text x="258" y="394" text-anchor="middle" stroke="none">72"</text>
+          <!-- base width: bottom -->
+          <line x1="80" y1="618" x2="80" y2="628" stroke-width="0.6"/>
+          <line x1="220" y1="618" x2="220" y2="628" stroke-width="0.6"/>
+          <line x1="80" y1="624" x2="138" y2="624" stroke-width="0.6"/>
+          <line x1="162" y1="624" x2="220" y2="624" stroke-width="0.6"/>
+          <polygon points="84,624 80,621 80,627" stroke="none"/>
+          <polygon points="216,624 220,621 220,627" stroke="none"/>
+          <text x="150" y="627" text-anchor="middle" stroke="none">28"</text>
+        </g>
+
+        <text x="150" y="660" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="9" letter-spacing="2" fill="#1A1A1A" opacity="0.55">FLOOR</text>
+      </g>
+
+      <!-- ============ FRAME 2 / SIDE ELEVATION (working profile) ============ -->
+      <g transform="translate(380 80)">
+        <rect width="640" height="620" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="1.2"/>
+        <rect width="640" height="620" fill="url(#pl-grid)"/>
+        <rect width="640" height="620" fill="url(#pl-gridmaj)"/>
+        <text x="14" y="22" font-family="ui-monospace, Menlo, monospace" font-size="10" letter-spacing="2.4" fill="#1A1A1A">SIDE ELEVATION · WORKING</text>
+        <text x="626" y="22" font-family="ui-monospace, Menlo, monospace" font-size="10" letter-spacing="2.4" fill="#1A1A1A" opacity="0.5" text-anchor="end">02</text>
+
+        <!-- floor line -->
+        <line x1="40" y1="560" x2="600" y2="560" stroke="#1A1A1A" stroke-width="1.2"/>
+        <g stroke="#1A1A1A" stroke-width="0.8" opacity="0.4">
+          <line x1="40" y1="566" x2="46" y2="572"/>
+          <line x1="80" y1="566" x2="86" y2="572"/>
+          <line x1="120" y1="566" x2="126" y2="572"/>
+          <line x1="160" y1="566" x2="166" y2="572"/>
+          <line x1="200" y1="566" x2="206" y2="572"/>
+          <line x1="240" y1="566" x2="246" y2="572"/>
+          <line x1="280" y1="566" x2="286" y2="572"/>
+          <line x1="320" y1="566" x2="326" y2="572"/>
+          <line x1="360" y1="566" x2="366" y2="572"/>
+          <line x1="400" y1="566" x2="406" y2="572"/>
+          <line x1="440" y1="566" x2="446" y2="572"/>
+          <line x1="480" y1="566" x2="486" y2="572"/>
+          <line x1="520" y1="566" x2="526" y2="572"/>
+          <line x1="560" y1="566" x2="566" y2="572"/>
+          <line x1="600" y1="566" x2="606" y2="572"/>
+        </g>
+        <text x="40" y="582" font-family="ui-monospace, Menlo, monospace" font-size="8" letter-spacing="2" fill="#1A1A1A" opacity="0.5">FLOOR · GRADE</text>
+
+        <!-- height datum (left) -->
+        <g stroke="#1A1A1A" stroke-width="0.8" opacity="0.45">
+          <line x1="58" y1="180" x2="58" y2="560" stroke-dasharray="2 4"/>
+          <line x1="54" y1="180" x2="62" y2="180"/>
+          <line x1="54" y1="280" x2="62" y2="280"/>
+          <line x1="54" y1="380" x2="62" y2="380"/>
+          <line x1="54" y1="480" x2="62" y2="480"/>
+          <line x1="54" y1="560" x2="62" y2="560"/>
+        </g>
+        <g font-family="ui-monospace, Menlo, monospace" font-size="8" letter-spacing="1.4" fill="#1A1A1A" opacity="0.6">
+          <text x="38" y="184" text-anchor="end">72"</text>
+          <text x="38" y="284" text-anchor="end">54"</text>
+          <text x="38" y="384" text-anchor="end">36"</text>
+          <text x="38" y="484" text-anchor="end">18"</text>
+          <text x="38" y="564" text-anchor="end">0</text>
+        </g>
+
+        <!-- CART OF TOTES (behind, right side) — parked, no active tote -->
+        <g stroke="#1A1A1A" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round" fill="#FFFFFF">
+          <!-- cart frame side profile -->
+          <rect x="430" y="430" width="156" height="120" />
+          <!-- 4 tote slots stacked 2x2 on cart -->
+          <line x1="430" y1="490" x2="586" y2="490"/>
+          <line x1="508" y1="430" x2="508" y2="550"/>
+          <!-- cart wheels -->
+          <circle cx="448" cy="556" r="10" fill="#FFFFFF"/>
+          <circle cx="448" cy="556" r="3" fill="#1A1A1A" stroke="none"/>
+          <circle cx="568" cy="556" r="10" fill="#FFFFFF"/>
+          <circle cx="568" cy="556" r="3" fill="#1A1A1A" stroke="none"/>
+          <!-- hitch tongue -->
+          <line x1="430" y1="500" x2="394" y2="510" stroke-width="1.2"/>
+          <circle cx="392" cy="510" r="3" fill="#FFFFFF"/>
+        </g>
+
+        <!-- ROBOT — side profile, confident architectural form -->
+        <g stroke="#1A1A1A" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" fill="#FFFFFF">
+          <!-- mobile base (deeper, more grounded) -->
+          <rect x="200" y="490" width="180" height="60" rx="4"/>
+          <!-- battery / chassis seam -->
+          <line x1="200" y1="510" x2="380" y2="510" stroke-width="0.8" opacity="0.5"/>
+          <!-- drive wheels -->
+          <circle cx="228" cy="556" r="14"/>
+          <circle cx="228" cy="556" r="4" fill="#1A1A1A" stroke="none"/>
+          <circle cx="352" cy="556" r="14"/>
+          <circle cx="352" cy="556" r="4" fill="#1A1A1A" stroke="none"/>
+          <!-- caster (front, smaller) -->
+          <circle cx="290" cy="560" r="6"/>
+          <!-- column / mast (single confident form) -->
+          <rect x="252" y="280" width="76" height="216" rx="3"/>
+          <!-- column height markers -->
+          <line x1="252" y1="320" x2="328" y2="320" stroke-width="0.6" opacity="0.3"/>
+          <line x1="252" y1="370" x2="328" y2="370" stroke-width="0.6" opacity="0.3"/>
+          <line x1="252" y1="420" x2="328" y2="420" stroke-width="0.6" opacity="0.3"/>
+          <line x1="252" y1="470" x2="328" y2="470" stroke-width="0.6" opacity="0.3"/>
+          <!-- shoulder yoke -->
+          <rect x="232" y="252" width="116" height="32" rx="3"/>
+          <!-- head / sensor pod -->
+          <rect x="248" y="200" width="84" height="56" rx="6"/>
+          <!-- visor band -->
+          <rect x="256" y="216" width="68" height="22" rx="2" fill="#1A1A1A" stroke="none"/>
+          <!-- stereo eyes inside visor -->
+          <circle cx="276" cy="227" r="4.5" fill="#FFD24C" stroke="none"/>
+          <circle cx="304" cy="227" r="4.5" fill="#FFD24C" stroke="none"/>
+          <circle cx="276" cy="227" r="1.6" fill="#1A1A1A" stroke="none"/>
+          <circle cx="304" cy="227" r="1.6" fill="#1A1A1A" stroke="none"/>
+          <!-- antenna / status LED -->
+          <line x1="290" y1="200" x2="290" y2="186" stroke-width="1.2"/>
+          <circle cx="290" cy="184" r="3" fill="#FFD24C"/>
+        </g>
+
+        <!-- ARMS — both parked, hanging at column sides -->
+        <g stroke="#1A1A1A" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" fill="#FFFFFF">
+          <!-- LEFT arm — parked, folded against column -->
+          <line x1="244" y1="284" x2="218" y2="354"/>
+          <circle cx="218" cy="354" r="6"/>
+          <line x1="218" y1="356" x2="240" y2="420"/>
+          <circle cx="240" cy="420" r="5"/>
+          <rect x="232" y="424" width="22" height="14" rx="2"/>
+          <line x1="237" y1="438" x2="237" y2="448" stroke-width="1.6"/>
+          <line x1="249" y1="438" x2="249" y2="448" stroke-width="1.6"/>
+
+          <!-- RIGHT arm — parked, mirrored -->
+          <line x1="336" y1="284" x2="362" y2="354"/>
+          <circle cx="362" cy="354" r="6"/>
+          <line x1="362" y1="356" x2="340" y2="420"/>
+          <circle cx="340" cy="420" r="5"/>
+          <rect x="326" y="424" width="22" height="14" rx="2"/>
+          <line x1="331" y1="438" x2="331" y2="448" stroke-width="1.6"/>
+          <line x1="343" y1="438" x2="343" y2="448" stroke-width="1.6"/>
+        </g>
+
+        <!-- shadows -->
+        <ellipse cx="290" cy="558" rx="100" ry="2.2" fill="#1A1A1A" opacity="0.18"/>
+        <ellipse cx="508" cy="558" rx="80" ry="2" fill="#1A1A1A" opacity="0.14"/>
+
+        <!-- DIMENSION LINES (blueprint blue, side elev only — overall HxL) -->
+        <g stroke="#1F4ED5" stroke-width="0.8" fill="#1F4ED5" opacity="0.55" font-family="ui-monospace, Menlo, monospace" font-size="9" letter-spacing="0.08em">
+          <!-- overall height datum on right side, robot only -->
+          <line x1="396" y1="186" x2="406" y2="186" stroke-width="0.6"/>
+          <line x1="396" y1="560" x2="406" y2="560" stroke-width="0.6"/>
+          <line x1="402" y1="186" x2="402" y2="358" stroke-width="0.6"/>
+          <line x1="402" y1="386" x2="402" y2="560" stroke-width="0.6"/>
+          <polygon points="402,190 399,184 405,184" stroke="none"/>
+          <polygon points="402,556 399,562 405,562" stroke="none"/>
+          <text x="402" y="376" text-anchor="middle" stroke="none">72"</text>
+          <!-- combined footprint width along bottom: robot + cart -->
+          <line x1="200" y1="600" x2="200" y2="610" stroke-width="0.6"/>
+          <line x1="586" y1="600" x2="586" y2="610" stroke-width="0.6"/>
+          <line x1="200" y1="606" x2="378" y2="606" stroke-width="0.6"/>
+          <line x1="408" y1="606" x2="586" y2="606" stroke-width="0.6"/>
+          <polygon points="204,606 200,603 200,609" stroke="none"/>
+          <polygon points="582,606 586,603 586,609" stroke="none"/>
+          <text x="393" y="609" text-anchor="middle" stroke="none">86"</text>
+        </g>
+
+        <!-- ============ NUMBERED CALLOUTS (refined geometry) ============ -->
+        <g font-family="ui-monospace, Menlo, monospace" font-size="11" font-weight="700" fill="#1A1A1A">
+          <!-- 01 stereo vision -->
+          <line x1="290" y1="220" x2="120" y2="120" stroke="#1A1A1A" stroke-width="0.8" opacity="0.5"/>
+          <use href="#pl-balloon" x="108" y="108" width="24" height="24"/>
+          <text x="120" y="124" text-anchor="middle">01</text>
+          <!-- 02 manipulator arms -->
+          <line x1="406" y1="340" x2="488" y2="240" stroke="#1A1A1A" stroke-width="0.8" opacity="0.5"/>
+          <use href="#pl-balloon" x="476" y="228" width="24" height="24"/>
+          <text x="488" y="244" text-anchor="middle">02</text>
+          <!-- 03 inner suction gripper (the yellow detail) -->
+          <line x1="503" y1="438" x2="600" y2="380" stroke="#1A1A1A" stroke-width="0.8" opacity="0.5"/>
+          <use href="#pl-balloon" x="588" y="368" width="24" height="24"/>
+          <text x="600" y="384" text-anchor="middle">03</text>
+          <!-- 04 mobile base -->
+          <line x1="290" y1="520" x2="130" y2="500" stroke="#1A1A1A" stroke-width="0.8" opacity="0.5"/>
+          <use href="#pl-balloon" x="118" y="488" width="24" height="24"/>
+          <text x="130" y="504" text-anchor="middle">04</text>
+          <!-- 05 cart of totes -->
+          <line x1="547" y1="460" x2="608" y2="540" stroke="#1A1A1A" stroke-width="0.8" opacity="0.5"/>
+          <use href="#pl-balloon" x="596" y="528" width="24" height="24"/>
+          <text x="608" y="544" text-anchor="middle">05</text>
+        </g>
+      </g>
+
+      <!-- ============ FRAME 3 / PLAN VIEW ============ -->
+      <g transform="translate(1060 80)">
+        <rect width="300" height="620" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="1.2"/>
+        <rect width="300" height="620" fill="url(#pl-grid)"/>
+        <rect width="300" height="620" fill="url(#pl-gridmaj)"/>
+        <text x="10" y="22" font-family="ui-monospace, Menlo, monospace" font-size="10" letter-spacing="2.4" fill="#1A1A1A">PLAN VIEW</text>
+        <text x="290" y="22" font-family="ui-monospace, Menlo, monospace" font-size="10" letter-spacing="2.4" fill="#1A1A1A" opacity="0.5" text-anchor="end">03</text>
+
+        <!-- scale + projection stamp -->
+        <g font-family="ui-monospace, Menlo, monospace" font-size="8" letter-spacing="1.6" fill="#1A1A1A" opacity="0.55">
+          <text x="10" y="38">SCALE  1:12</text>
+          <text x="10" y="50">PROJECTION  THIRD-ANGLE</text>
+        </g>
+
+        <!-- arm reach circles (dashed) -->
+        <circle cx="150" cy="200" r="120" fill="none" stroke="#1A1A1A" stroke-width="0.8" stroke-dasharray="3 5" opacity="0.35"/>
+        <text x="150" y="78" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="8" letter-spacing="1.6" fill="#1A1A1A" opacity="0.5">ARM REACH</text>
+
+        <g stroke="#1A1A1A" stroke-width="1.6" stroke-linejoin="round" fill="#FFFFFF">
+          <!-- robot footprint (top down, square base) -->
+          <rect x="100" y="150" width="100" height="100" rx="6"/>
+          <!-- column center -->
+          <circle cx="150" cy="200" r="14"/>
+          <!-- shoulder block top -->
+          <rect x="92" y="180" width="116" height="40" rx="4" fill="none" opacity="0.6"/>
+          <!-- arm 1 — parked, folded along base edge -->
+          <path d="M 108 200 L 110 232"/>
+          <circle cx="110" cy="232" r="5"/>
+          <path d="M 110 232 L 122 244"/>
+          <rect x="115" y="244" width="14" height="10" rx="2"/>
+          <!-- arm 2 — parked, mirrored -->
+          <path d="M 192 200 L 190 232"/>
+          <circle cx="190" cy="232" r="5"/>
+          <path d="M 190 232 L 178 244"/>
+          <rect x="171" y="244" width="14" height="10" rx="2"/>
+
+          <!-- hitch + cart trailing -->
+          <line x1="150" y1="250" x2="150" y2="290"/>
+          <rect x="84" y="290" width="132" height="180" rx="4"/>
+        </g>
+        <g stroke="#1A1A1A" stroke-width="1.2" fill="#FFFFFF">
+          <line x1="150" y1="290" x2="150" y2="470"/>
+          <line x1="84" y1="335" x2="216" y2="335"/>
+          <line x1="84" y1="380" x2="216" y2="380"/>
+          <line x1="84" y1="425" x2="216" y2="425"/>
+        </g>
+
+        <!-- compass -->
+        <g transform="translate(252 580)" font-family="ui-monospace, Menlo, monospace" font-size="9" fill="#1A1A1A" opacity="0.6">
+          <circle r="14" fill="none" stroke="#1A1A1A" stroke-width="0.8"/>
+          <line x1="0" y1="-14" x2="0" y2="14" stroke="#1A1A1A" stroke-width="0.8"/>
+          <line x1="-14" y1="0" x2="14" y2="0" stroke="#1A1A1A" stroke-width="0.8"/>
+          <text x="0" y="-18" text-anchor="middle">N</text>
+        </g>
+        <text x="150" y="500" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="9" letter-spacing="1.6" fill="#1A1A1A" opacity="0.55">FOOTPRINT + TRAILER</text>
+      </g>
+
+      <!-- ============ TITLE BLOCK ============ -->
+      <g transform="translate(40 740)">
+        <!-- outer cartouche -->
+        <rect width="1320" height="160" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="1.2"/>
+        <!-- horizontal divider between parts list and title cartouche -->
+        <line x1="0" y1="56" x2="1320" y2="56" stroke="#1A1A1A" stroke-width="1"/>
+
+        <!-- ============ TOP STRIP / PARTS LIST ============ -->
+        <text x="16" y="34" font-family="ui-monospace, Menlo, monospace" font-size="10" letter-spacing="2.4" fill="#1A1A1A" opacity="0.55">PARTS LIST</text>
+        <g font-family="ui-monospace, Menlo, monospace" font-size="11" letter-spacing="0.06em" fill="#1A1A1A">
+          <!-- 5 items, fixed evenly across 1320 width starting after PARTS LIST label -->
+          <g transform="translate(140 34)">
+            <text x="0" y="0" font-weight="700">01</text>
+            <text x="24" y="0">stereo vision</text>
+          </g>
+          <g transform="translate(340 34)">
+            <text x="0" y="0" font-weight="700">02</text>
+            <text x="24" y="0">manipulator arms</text>
+          </g>
+          <g transform="translate(580 34)">
+            <text x="0" y="0" font-weight="700">03</text>
+            <text x="24" y="0">two-finger gripper, inner suction</text>
+          </g>
+          <g transform="translate(900 34)">
+            <text x="0" y="0" font-weight="700">04</text>
+            <text x="24" y="0">mobile base</text>
+          </g>
+          <g transform="translate(1080 34)">
+            <text x="0" y="0" font-weight="700">05</text>
+            <text x="24" y="0">cart of totes</text>
+          </g>
+        </g>
+
+        <!-- ============ BOTTOM CARTOUCHE / 4 COLUMNS ============ -->
+        <!-- column dividers -->
+        <line x1="560" y1="56" x2="560" y2="160" stroke="#1A1A1A" stroke-width="1"/>
+        <line x1="800" y1="56" x2="800" y2="160" stroke="#1A1A1A" stroke-width="1"/>
+        <line x1="1040" y1="56" x2="1040" y2="160" stroke="#1A1A1A" stroke-width="1"/>
+
+        <!-- column labels (top of each cell) -->
+        <g font-family="ui-monospace, Menlo, monospace" font-size="9" letter-spacing="2.4" fill="#1A1A1A" opacity="0.55">
+          <text x="16"   y="78">DRAWING</text>
+          <text x="576"  y="78">REVISION</text>
+          <text x="816"  y="78">LOCATION</text>
+          <text x="1056" y="78">SHEET</text>
+        </g>
+
+        <!-- DRAWING cell -->
+        <text x="16" y="112" font-family="Instrument Serif, serif" font-style="italic" font-size="30" letter-spacing="-0.01em" fill="#1A1A1A">tutor intelligence</text>
+        <text x="16" y="140" font-family="ui-monospace, Menlo, monospace" font-size="12" letter-spacing="2" font-weight="700" fill="#1A1A1A">SONNY · ANATOMY</text>
+
+        <!-- REVISION cell -->
+        <text x="576" y="118" font-family="Instrument Serif, serif" font-style="italic" font-size="40" fill="#FFD24C" stroke="#1A1A1A" stroke-width="0.6">v1</text>
+        <text x="576" y="140" font-family="ui-monospace, Menlo, monospace" font-size="10" letter-spacing="1.6" opacity="0.55" fill="#1A1A1A">round 05 · 2026.04</text>
+
+        <!-- LOCATION cell -->
+        <text x="816" y="108" font-family="ui-monospace, Menlo, monospace" font-size="12" letter-spacing="1.6" font-weight="700" fill="#1A1A1A">watertown · ma</text>
+        <text x="816" y="128" font-family="ui-monospace, Menlo, monospace" font-size="10" letter-spacing="1.4" opacity="0.55" fill="#1A1A1A">100,000 sqft</text>
+        <text x="816" y="146" font-family="ui-monospace, Menlo, monospace" font-size="10" letter-spacing="1" opacity="0.55" fill="#1A1A1A">design · build · operate</text>
+
+        <!-- SHEET cell -->
+        <text x="1056" y="112" font-family="Instrument Serif, serif" font-style="italic" font-size="30" letter-spacing="-0.01em" fill="#1A1A1A">02 / 12</text>
+        <text x="1056" y="140" font-family="ui-monospace, Menlo, monospace" font-size="10" letter-spacing="1.4" opacity="0.55" fill="#1A1A1A">anatomy</text>
+      </g>
+    </svg>
+
+  </figure>
+</section>
+
+<!-- ================ TUTOR strip ================ -->
+<section id="tutor" class="tutorstrip" data-screen-label="03 Tutor">
+  <div class="tutorstrip-head">
+    <div class="eyebrow fade">03 / who built him</div>
+    <p class="tutorstrip-quote fade d1">half research lab, <em>half deployment company.</em></p>
+  </div>
+  <div class="tutorstrip-stats">
+    <div class="ts-stat fade d1">
+      <div class="ts-num">2021</div>
+      <div class="ts-lab">founded</div>
+    </div>
+    <div class="ts-stat fade d2">
+      <div class="ts-num">MIT</div>
+      <div class="ts-lab">ai lab origin</div>
+    </div>
+    <div class="ts-stat fade d3">
+      <div class="ts-num">Watertown</div>
+      <div class="ts-lab">ma headquarters</div>
+    </div>
+    <div class="ts-stat fade d4">
+      <div class="ts-num">all of it</div>
+      <div class="ts-lab">design · build · operate · support</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================ FLEET MANIFESTO ================ -->
+<section id="fleet" class="fleet" data-screen-label="04 Fleet">
+  <div class="fleet-head">
+    <div class="eyebrow fade">04 / a hundred built</div>
+    <h2 class="fleet-h fade d1">we've built a hundred<br/><em>of him.</em></h2>
+  </div>
+  <div class="fleet-photo fade d2" id="fleetPhoto">
+    <video class="fleet-media" poster="assets/fleet.jpg" autoplay muted loop playsinline preload="metadata">
+      <source src="assets/fleet.mp4" type="video/mp4" />
+    </video>
+    <div class="fleet-photo-cap"><span class="stamp"><span class="dot"></span> our current fleet · final integration</span><span>watertown / ma / 2026</span></div>
+  </div>
+</section>
+
+<!-- ================ PROFILE — what he's built for ================ -->
+<section id="profile" class="profile" data-screen-label="05 Profile">
+  <div class="profile-head">
+    <div class="eyebrow fade">05 / what he's built for</div>
+    <h2 class="profile-h fade d1">small items × many variants × <em>seasonal cycles.</em></h2>
+    <p class="lede fade d2">
+      the shape of work that breaks goods-to-person and burns out humans. a long tail of look-alike SKUs that move in waves. sonny doesn't care how big your company is. he cares about the catalog.
+    </p>
+  </div>
+
+  <div class="profile-grid fade d1">
+    <div class="profile-col">
+      <h4>item size</h4>
+      <div class="tags">
+        <span class="tag hot">small</span>
+        <span class="tag hot">light</span>
+        <span class="tag">mid</span>
+        <span class="tag cold">pallet</span>
+        <span class="tag cold">bulky</span>
+      </div>
+    </div>
+    <div class="profile-col">
+      <h4>variants</h4>
+      <div class="tags">
+        <span class="tag hot">100s of SKUs</span>
+        <span class="tag hot">look-alikes</span>
+        <span class="tag hot">seasonal lines</span>
+        <span class="tag">custom kits</span>
+        <span class="tag cold">single-SKU</span>
+      </div>
+    </div>
+    <div class="profile-col">
+      <h4>cadence</h4>
+      <div class="tags">
+        <span class="tag hot">peaks &amp; troughs</span>
+        <span class="tag hot">drops</span>
+        <span class="tag hot">holiday spikes</span>
+        <span class="tag">steady-state</span>
+        <span class="tag cold">flat-line</span>
+      </div>
+    </div>
+    <div class="profile-col">
+      <h4>floor</h4>
+      <div class="tags">
+        <span class="tag hot">existing racking</span>
+        <span class="tag hot">human-walkable</span>
+        <span class="tag">multi-zone</span>
+        <span class="tag cold">goods-to-person</span>
+        <span class="tag cold">conveyor-locked</span>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ================ FLEX + SIM merged ================ -->
+<section id="flex" class="flex" data-screen-label="06 Your Floor" data-rail-light="1">
+  <div class="flex-head">
+    <div class="eyebrow fade" style="color:rgba(255,255,255,0.55)">06 / your floor, unchanged</div>
+    <h2 class="flex-h fade d1">most automation makes you change. <em>sonny doesn't.</em></h2>
+    <p class="lede fade d2">sonny works in the warehouse you already have. your racking, your aisles, your pack stations. when you need more throughput, you add another sonny. he coordinates with the rest. proof, below.</p>
+  </div>
+  <div class="flex-sim-wrap fade d2">
+    <div class="flex-sim-head"><span class="stamp"><span class="pulse"></span> live · three sonnys · zone discipline</span><span class="stamp-r">your aisles · no retrofit</span></div>
+    <div id="fleet-mount"></div>
+    <div class="flex-sim-cap">three sonnys, your aisles, no retrofit. add a fourth and the pattern holds.</div>
+  </div>
+</section>
+
+<!-- ================ GRIPPER (the precision tool, right before the cost of imprecision) ================ -->
+<section id="gripper" class="gripper" data-screen-label="07 Gripper">
+  <div class="gripper-head">
+    <div class="eyebrow fade">07 / one hand, two modes</div>
+    <h2 class="gripper-h fade d1">yes, even <em>the small stuff.</em></h2>
+    <p class="lede fade d2">
+      a parallel-jaw gripper handles boxes, bottles, the workhorse items. for everything small, light, or awkward, a suction tool extends from <em>between the jaws</em> and reaches into the bin. one hand, two modes. no tool changes.
+    </p>
+  </div>
+
+  <div class="gripper-cards">
+    <div class="g-card research fade">
+      <div class="stamp"><span style="opacity:.5">●</span> v1 research · lab prototype</div>
+      <div class="name">parallel jaws</div>
+      <div class="desc">the workhorse mode. clamps boxes, bottles, rigid items. unchanged from the lab to the warehouse.</div>
+      <div class="glyph-wrap" id="pj-glyph"></div>
+      <div class="rows">
+        <div class="row"><span class="k">type</span><span class="v">two-finger jaw</span></div>
+        <div class="row"><span class="k">grip</span><span class="v">clamp</span></div>
+        <div class="row"><span class="k">good for</span><span class="v">boxes · bottles</span></div>
+      </div>
+    </div>
+
+    <div class="g-card production fade d2">
+      <div class="stamp"><span class="pulse"></span> production · sonny v1</div>
+      <div class="name">jaws + inner suction</div>
+      <div class="desc">same hand, plus a suction tool that deploys from <em>between</em> the jaws. it extends down into bins, picks the small stuff, retracts. no tool changes, no second arm.</div>
+      <div class="glyph-wrap" id="combo-glyph"></div>
+      <div class="rows">
+        <div class="row"><span class="k">type</span><span class="v">jaw + <span class="yellow" style="color:var(--yellow)">inner suction</span></span></div>
+        <div class="row"><span class="k">grip</span><span class="v">clamp · or reach</span></div>
+        <div class="row"><span class="k">good for</span><span class="v">boxes · bottles · small parts · pouches</span></div>
+        <div class="row"><span class="k">tool changes</span><span class="v yellow">none</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================ CASCADE ================ -->
+<section id="cascade" class="cascade" data-screen-label="08 Cascade">
+  <div class="cascade-head">
+    <div class="eyebrow fade">08 / the rework loop</div>
+    <h2 class="cascade-h fade d1">the cost of <em>a wrong pick.</em></h2>
+    <p class="lede fade d2">DTC mispick rates run 0.5 to 1.5%. the SKU itself is the cheap part. it's the cleanup downstream that bleeds.</p>
+  </div>
+
+  <div class="cascade-pair">
+    <!-- LEFT — the cost -->
+    <div class="cascade-side cascade-cost fade d2">
+      <div class="cascade-side-head">
+        <span class="cascade-tag">cost</span>
+        <span class="cascade-side-h">where the dollars go.</span>
+      </div>
+      <div class="cascade-tree-wrap">
+      <svg class="cascade-tree-svg" viewBox="0 0 640 320" preserveAspectRatio="xMidYMid meet">
+        <!-- root -->
+        <rect x="20" y="140" width="140" height="40" rx="2" fill="#FFD24C" stroke="#1A1A1A" stroke-width="1.2"/>
+        <text class="tree-node" x="90" y="166" text-anchor="middle" font-weight="600">one wrong pick.</text>
+
+        <!-- branches: 5 levels -->
+        <path class="tree-edge" d="M 160 160 Q 200 60 240 60"/>
+        <path class="tree-edge" d="M 160 160 Q 200 110 240 110"/>
+        <path class="tree-edge" d="M 160 160 Q 200 160 240 160"/>
+        <path class="tree-edge" d="M 160 160 Q 200 210 240 210"/>
+        <path class="tree-edge" d="M 160 160 Q 200 260 240 260"/>
+
+        <g><rect x="240" y="44" width="180" height="32" fill="#fff" stroke="#1A1A1A" stroke-width="1"/>
+           <text class="tree-node" x="252" y="64">cs contact + ticket</text>
+           <text class="tree-cost" x="408" y="64" text-anchor="end">~$8</text></g>
+        <g><rect x="240" y="94" width="180" height="32" fill="#fff" stroke="#1A1A1A" stroke-width="1"/>
+           <text class="tree-node" x="252" y="114">inventory investigation</text>
+           <text class="tree-cost" x="408" y="114" text-anchor="end">~$6</text></g>
+        <g><rect x="240" y="144" width="180" height="32" fill="#fff" stroke="#1A1A1A" stroke-width="1"/>
+           <text class="tree-node" x="252" y="164">re-pick + re-ship</text>
+           <text class="tree-cost" x="408" y="164" text-anchor="end">~$14</text></g>
+        <g><rect x="240" y="194" width="180" height="32" fill="#fff" stroke="#1A1A1A" stroke-width="1"/>
+           <text class="tree-node" x="252" y="214">refund processing</text>
+           <text class="tree-cost" x="408" y="214" text-anchor="end">~$4</text></g>
+        <g><rect x="240" y="244" width="180" height="32" fill="#fff" stroke="#1A1A1A" stroke-width="1"/>
+           <text class="tree-node" x="252" y="264">brand goodwill</text>
+           <text class="tree-cost" x="408" y="264" text-anchor="end">~$12</text></g>
+
+        <!-- collector -->
+        <path class="tree-edge" d="M 420 60 Q 480 60 500 160"/>
+        <path class="tree-edge" d="M 420 110 Q 480 110 500 160"/>
+        <path class="tree-edge" d="M 420 160 L 500 160"/>
+        <path class="tree-edge" d="M 420 210 Q 480 210 500 160"/>
+        <path class="tree-edge" d="M 420 260 Q 480 260 500 160"/>
+
+        <rect x="500" y="140" width="120" height="40" fill="#1A1A1A"/>
+        <text x="560" y="166" font-family="Instrument Serif, serif" font-style="italic" font-size="18" fill="#FFD24C" text-anchor="middle">~$44</text>
+      </svg>
+      </div>
+      <div class="cascade-side-foot">downstream cleanup per mispick. the SKU is the cheap part.</div>
+    </div>
+
+    <!-- RIGHT — the structural answer -->
+    <div class="cascade-side cascade-fix fade d3">
+      <div class="cascade-side-head">
+        <span class="cascade-tag cascade-tag-y">the answer</span>
+        <span class="cascade-side-h">vision verifies <em>before he places.</em></span>
+      </div>
+
+      <div class="cascade-fix-body">
+        <p class="cascade-fix-lede">sonny sees the SKU before the tote. mispicks become structurally near-zero. accuracy stops being a skill problem and becomes a system property.</p>
+
+        <div class="cascade-fix-loop">
+          <div class="loop-row before">
+            <span class="loop-num">01</span>
+            <span class="loop-step">pick</span>
+            <span class="loop-arrow">→</span>
+            <span class="loop-step">place</span>
+            <span class="loop-arrow">→</span>
+            <span class="loop-step bad">hope</span>
+            <span class="loop-tag">human · today</span>
+          </div>
+          <div class="loop-row after">
+            <span class="loop-num">02</span>
+            <span class="loop-step">pick</span>
+            <span class="loop-arrow">→</span>
+            <span class="loop-step verify">verify</span>
+            <span class="loop-arrow">→</span>
+            <span class="loop-step">place</span>
+            <span class="loop-tag">sonny</span>
+          </div>
+        </div>
+
+        <div class="cascade-cite">
+          <div class="cite-rule"></div>
+          <div class="cite-row">
+            <span class="cite-dot"></span>
+            <span class="cite-body">vision-verified picking has shipped in our production fleet for over a year.</span>
+            <span class="cite-stamp">live · multi-site</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================ MODEL ================ -->
+<section id="model" class="model" data-screen-label="09 Model">
+  <div class="model-head">
+    <div class="eyebrow fade">09 / the model</div>
+    <h2 class="model-h fade d1">we only earn when sonny <em>works.</em></h2>
+    <p class="lede fade d2">pay per pick. nothing up front. scales with your peaks. our skin in the game, not yours.</p>
+  </div>
+
+  <div class="model-hero fade d1">
+    <span class="model-hero-rule"></span>
+    <div class="model-hero-head"><div class="model-hero-stamp"><span class="pulse"></span> default · pay per pick</div><div class="model-hero-stamp-r">how every sonny ships</div></div>
+    <h3 class="model-hero-h">pay per pick.</h3>
+    <p class="model-hero-sub">nothing up front, nothing monthly, no minimums. you pay only for picks that ship clean. our skin in the game.</p>
+    <div class="model-rtb">
+      <div class="model-rtb-card"><div class="rtb-num">01</div><div class="rtb-h">$0 upfront</div><div class="rtb-d">no capex line. no PO to chase. no quarter-long approval cycle.</div></div>
+      <div class="model-rtb-card"><div class="rtb-num">02</div><div class="rtb-h">scales with peaks</div><div class="rtb-d">spend rises with your volume in november. falls back in february. you don't pay for idle sonnys.</div></div>
+      <div class="model-rtb-card"><div class="rtb-num">03</div><div class="rtb-h">we maintain him</div><div class="rtb-d">software, hardware, on-call ops, parts. all on us. when a sonny stalls at 2am, watertown picks up.</div></div>
+    </div>
+  </div>
+  <div class="model-foot fade d2"><span class="model-foot-rule"></span><p class="model-foot-note">prefer to own? capital purchase available if your CFO insists. ask us about the buy-out path.</p></div>
+</section>
+
+<!-- ================ CTA ================ -->
+<section id="cta" class="cta" data-screen-label="10 CTA">
+  <div class="cta-eyebrow eyebrow fade">the close</div>
+  <h2 class="cta-h fade d1">made for <em>your floor.</em></h2>
+  <div class="cta-ghost" aria-hidden="true">sonny.</div>
+</section>
+
+<!-- ================ FOOTER ================ -->
+<footer class="foot">
+  <div class="foot-grid">
+    <div class="foot-brand">
+      <div class="mark"><span class="dot"></span> tutor</div>
+      <p>half research lab,<br/>half deployment company.</p>
+    </div>
+    <div class="foot-col">
+      <h4>the robot</h4>
+      <a href="#anatomy">anatomy</a>
+      <a href="#fleet">the fleet</a>
+      <a href="#model">pay per pick</a>
+    </div>
+    <div class="foot-col">
+      <h4>the company</h4>
+      <a href="#">watertown, ma</a>
+      <a href="#">research</a>
+      <a href="#">careers</a>
+      <a href="#">press</a>
+    </div>
+    <div class="foot-col">
+      <h4>get in touch</h4>
+      <a href="#cta">book a floor walk</a>
+      <a href="mailto:hello@tutorintelligence.com">hello@tutorintelligence.com</a>
+    </div>
+  </div>
+  <div class="foot-bot">
+    <span>© tutor intelligence, 2026 · watertown · ma · mit ai lab origin</span>
+    <span class="foot-easter">hold <kbd>W</kbd> to wireframe</span>
+  </div>
+</footer>
+
+<!-- ================ React glue ================ -->
+<script type="text/babel" src="fleet-sim.jsx"></script>
+
+<script>
+// ============================================================
+// reveal on scroll
+// ============================================================
+(function() {
+  const fades = document.querySelectorAll('.fade');
+  const reveal = () => {
+    const h = window.innerHeight || 800;
+    fades.forEach(el => {
+      const r = el.getBoundingClientRect();
+      if (r.top < h * 1.05) el.classList.add('in');
+    });
+  };
+  requestAnimationFrame(reveal);
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.08, rootMargin: '0px 0px -6% 0px' });
+    fades.forEach(el => io.observe(el));
+  } else {
+    fades.forEach(el => el.classList.add('in'));
+  }
+  setTimeout(() => fades.forEach(el => el.classList.add('in')), 1500);
+
+  // fleet photo gentle ambient zoom on enter
+  const fp = document.getElementById('fleetPhoto');
+  if (fp && 'IntersectionObserver' in window) {
+    const io2 = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { fp.classList.add('in'); io2.disconnect(); } });
+    }, { threshold: 0.3 });
+    io2.observe(fp);
+  }
+})();
+
+// ============================================================
+// chapter rail + nav-on-dark
+// ============================================================
+(function() {
+  const sections = Array.from(document.querySelectorAll('section[id]'));
+  const railLinks = Array.from(document.querySelectorAll('.rail a'));
+  const topnav = document.getElementById('topnav');
+  if (!sections.length) return;
+
+  const update = () => {
+    const mid = window.innerHeight * 0.4;
+    let active = sections[0].id;
+    let dark = false;
+    for (const s of sections) {
+      const r = s.getBoundingClientRect();
+      if (r.top <= mid && r.bottom > mid) {
+        active = s.id;
+        if (s.dataset.railLight === '1') dark = true;
+        break;
+      }
+    }
+    railLinks.forEach(a => a.classList.toggle('active', a.dataset.target === active));
+    topnav.classList.toggle('on-dark', dark);
+  };
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+})();
+
+// ============================================================
+// hero parallax
+// ============================================================
+(function() {
+  const stage = document.getElementById('heroStage');
+  const sonny = document.getElementById('heroSonny');
+  if (!stage || !sonny) return;
+  let raf = null, tx = 0, ty = 0;
+  stage.addEventListener('mousemove', (e) => {
+    const r = stage.getBoundingClientRect();
+    const cx = (e.clientX - r.left) / r.width - 0.5;
+    const cy = (e.clientY - r.top) / r.height - 0.5;
+    tx = cx * 14; ty = cy * 10;
+    if (!raf) raf = requestAnimationFrame(apply);
+  });
+  stage.addEventListener('mouseleave', () => { tx = 0; ty = 0; if (!raf) raf = requestAnimationFrame(apply); });
+  function apply() { sonny.style.translate = tx.toFixed(2) + 'px ' + ty.toFixed(2) + 'px'; raf = null; }
+})();
+
+// ============================================================
+// hold-W wireframe easter egg
+// ============================================================
+(function() {
+  let active = false;
+  document.addEventListener('keydown', (e) => {
+    if (e.key.toLowerCase() === 'w' && !e.ctrlKey && !e.metaKey && !e.altKey && !active) {
+      const tag = (e.target && e.target.tagName) || '';
+      if (tag === 'INPUT' || tag === 'TEXTAREA') return;
+      active = true;
+      document.body.classList.add('wire');
+    }
+  });
+  document.addEventListener('keyup', (e) => {
+    if (e.key.toLowerCase() === 'w' && active) {
+      active = false;
+      document.body.classList.remove('wire');
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
