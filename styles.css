@@ -275,7 +275,7 @@ section { position: relative; }
 .hero-sonny {
   position: relative; z-index: 2; width: 100%; max-width: 720px; margin: 0 auto;
   animation: float 9s ease-in-out infinite, sonnyAppear 1600ms cubic-bezier(.2,.7,.2,1) both;
-  filter: drop-shadow(0 30px 40px rgba(0,0,0,0.08));
+  filter: drop-shadow(0 30px 40px rgba(0,0,0,0.08)) drop-shadow(0 0 1px var(--cream)) drop-shadow(0 0 1px var(--cream));
 }
 @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
 @keyframes sonnyAppear {
